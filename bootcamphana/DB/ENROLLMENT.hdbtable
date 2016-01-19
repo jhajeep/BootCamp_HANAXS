@@ -1,0 +1,14 @@
+table.schemaName = "NEO_<XXXXXXXXXX>";
+
+table.tableType = COLUMNSTORE;
+
+table.columns = [ {name = "JOBID";      sqlType = NVARCHAR;     nullable = false; length = 10; },
+		          {name = "PERSONID";   sqlType = VARCHAR;      nullable = false; length = 10; },
+		          {name = "JOB_JOBID";   sqlType = VARCHAR;      nullable = false; length = 10; },
+                  {name = "FIRST_NAME"; sqlType = VARCHAR;      nullable = false; length = 50 ; },
+                  {name = "LAST_NAME";  sqlType = VARCHAR;      nullable = true; length = 50 ; },
+                  {name = "EMAIL";      sqlType = VARCHAR;      nullable = false; length = 50;  },
+		          {name = "LOCATION";   sqlType = VARCHAR;      nullable = true; length = 50;  },
+	  	          {name = "APPLIED_ON"; sqlType = TIMESTAMP; }
+              ];
+table.primaryKey.pkcolumns = ["JOBID","PERSONID"];

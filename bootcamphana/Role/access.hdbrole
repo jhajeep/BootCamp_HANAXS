@@ -1,0 +1,3 @@
+role <User>trial.bootcamphana.Role::access {
+          catalog schema "NEO_<XXXXXXXXXX>": SELECT,INSERT,UPDATE,DELETE ; 
+}

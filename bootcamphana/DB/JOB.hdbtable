@@ -1,0 +1,15 @@
+table.schemaName = "NEO_<XXXXXXXXXX>";
+
+table.tableType = COLUMNSTORE;
+
+table.columns = [ {name = "JOBID";                 sqlType = VARCHAR;  nullable = false; length = 10;},
+                  {name = "DESCRIPTION";           sqlType = VARCHAR;  nullable = false; length = 100;},
+                  {name = "DEPARTMENT";           sqlType = VARCHAR;  nullable = false; length = 20;},
+                  {name = "VALID_TILL";           sqlType = TIMESTAMP;},
+                  {name = "CREATED_ON";         sqlType = TIMESTAMP;},
+		          {name = "CREATED_BY";         sqlType = VARCHAR;  nullable = true; length = 10;}
+                                ];
+
+              
+
+table.primaryKey.pkcolumns = ["JOBID"];

@@ -1,0 +1,4 @@
+service namespace "<User>trial.bootcamphana.XS" { "NEO_<XXXXXXXXXX>"."<User>trial.bootcamphana.DB::JOB" as "Jobs" navigates ("job_enrollment" as "EnrollmentDetails");
+                             "NEO_<XXXXXXXXXX>"."<User>trial.bootcamphana.DB::ENROLLMENT" as "Enrolments" navigates ("job_enrollment" as "JobDetails");
+                             association "job_enrollment" principal "Jobs"("JOBID") multiplicity "1" dependent "Enrolments"("JOBID") multiplicity "*";
+                             }

@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" schemaVersion="2.3" id="CV_LOCATION_COUNT" applyPrivilegeType="ANALYTIC_PRIVILEGE" checkAnalyticPrivileges="true" defaultClient="$$client$$" defaultLanguage="$$language$$" hierarchiesSQLEnabled="false" translationRelevant="true" visibility="reportingEnabled" calculationScenarioType="TREE_BASED" dataCategory="CUBE" enforceSqlExecution="false" executionSemantic="UNDEFINED" outputViewType="Aggregation">
+  <origin/>
+  <descriptions defaultDescription="CV_LOCATION_COUNT"/>
+  <metadata changedAt="2016-01-16 10:59:08.05"/>
+  <localVariables/>
+  <variableMappings/>
+  <dataSources>
+    <DataSource id="i044067trial.bootcamphana.DB::ENROLLMENT" type="DATA_BASE_TABLE">
+      <viewAttributes allViewAttributes="true"/>
+      <columnObject schemaName="NEO_F51Z5A2ZDYNSX1GFAGXYFDVYC" columnObjectName="i044067trial.bootcamphana.DB::ENROLLMENT"/>
+    </DataSource>
+    <DataSource id="i044067trial.bootcamphana.DB::JOB" type="DATA_BASE_TABLE">
+      <viewAttributes allViewAttributes="true"/>
+      <columnObject schemaName="NEO_F51Z5A2ZDYNSX1GFAGXYFDVYC" columnObjectName="i044067trial.bootcamphana.DB::JOB"/>
+    </DataSource>
+  </dataSources>
+  <calculationViews>
+    <calculationView xsi:type="Calculation:ProjectionView" id="Projection_1">
+      <descriptions/>
+      <viewAttributes>
+        <viewAttribute id="JOBID"/>
+        <viewAttribute id="LOCATION"/>
+      </viewAttributes>
+      <calculatedViewAttributes/>
+      <input node="#i044067trial.bootcamphana.DB::ENROLLMENT">
+        <mapping xsi:type="Calculation:AttributeMapping" target="JOBID" source="JOBID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="LOCATION" source="LOCATION"/>
+      </input>
+    </calculationView>
+    <calculationView xsi:type="Calculation:ProjectionView" id="Projection_2">
+      <descriptions/>
+      <viewAttributes>
+        <viewAttribute id="JOBID"/>
+        <viewAttribute id="DEPARTMENT"/>
+        <viewAttribute id="VALID_TILL"/>
+      </viewAttributes>
+      <calculatedViewAttributes/>
+      <input node="#i044067trial.bootcamphana.DB::JOB">
+        <mapping xsi:type="Calculation:AttributeMapping" target="JOBID" source="JOBID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="DEPARTMENT" source="DEPARTMENT"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="VALID_TILL" source="VALID_TILL"/>
+      </input>
+    </calculationView>
+    <calculationView xsi:type="Calculation:JoinView" id="Join_1" cardinality="CN_1" joinType="inner">
+      <descriptions/>
+      <viewAttributes>
+        <viewAttribute id="JOBID"/>
+        <viewAttribute id="LOCATION"/>
+        <viewAttribute id="DEPARTMENT"/>
+        <viewAttribute id="VALID_TILL"/>
+        <viewAttribute id="JOB_JOBID"/>
+      </viewAttributes>
+      <calculatedViewAttributes>
+        <calculatedViewAttribute datatype="INTEGER" id="Count" expressionLanguage="COLUMN_ENGINE">
+          <formula>1</formula>
+        </calculatedViewAttribute>
+      </calculatedViewAttributes>
+      <input node="#Projection_1">
+        <mapping xsi:type="Calculation:AttributeMapping" target="JOBID" source="JOBID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="LOCATION" source="LOCATION"/>
+      </input>
+      <input node="#Projection_2">
+        <mapping xsi:type="Calculation:AttributeMapping" target="DEPARTMENT" source="DEPARTMENT"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="VALID_TILL" source="VALID_TILL"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="JOB_JOBID" source="JOBID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="JOBID" source="JOBID"/>
+      </input>
+      <joinAttribute name="JOBID"/>
+    </calculationView>
+  </calculationViews>
+  <logicalModel id="Join_1">
+    <descriptions/>
+    <attributes>
+      <attribute id="JOBID" order="1" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="JOBID"/>
+        <keyMapping columnObjectName="Join_1" columnName="JOBID"/>
+      </attribute>
+      <attribute id="LOCATION" order="2" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="LOCATION"/>
+        <keyMapping columnObjectName="Join_1" columnName="LOCATION"/>
+      </attribute>
+      <attribute id="DEPARTMENT" order="3" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="DEPARTMENT"/>
+        <keyMapping columnObjectName="Join_1" columnName="DEPARTMENT"/>
+      </attribute>
+      <attribute id="VALID_TILL" order="5" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="VALID_TILL"/>
+        <keyMapping columnObjectName="Join_1" columnName="VALID_TILL"/>
+      </attribute>
+      <attribute id="JOB_JOBID" order="6" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="JOBID_1"/>
+        <keyMapping columnObjectName="Join_1" columnName="JOB_JOBID"/>
+      </attribute>
+    </attributes>
+    <calculatedAttributes/>
+    <privateDataFoundation>
+      <tableProxies/>
+      <joins/>
+      <layout>
+        <shapes/>
+      </layout>
+    </privateDataFoundation>
+    <baseMeasures>
+      <measure id="Count" order="4" aggregationType="sum" measureType="simple">
+        <descriptions defaultDescription="Count"/>
+        <measureMapping columnObjectName="Join_1" columnName="Count"/>
+      </measure>
+    </baseMeasures>
+    <calculatedMeasures/>
+    <restrictedMeasures/>
+    <localDimensions/>
+  </logicalModel>
+  <layout>
+    <shapes>
+      <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+        <upperLeftCorner x="40" y="85"/>
+        <rectangleSize height="0" width="0"/>
+      </shape>
+      <shape expanded="true" modelObjectName="Projection_1" modelObjectNameSpace="CalculationView">
+        <upperLeftCorner x="50" y="230"/>
+        <rectangleSize height="-1" width="-1"/>
+      </shape>
+      <shape expanded="true" modelObjectName="Projection_2" modelObjectNameSpace="CalculationView">
+        <upperLeftCorner x="230" y="275"/>
+        <rectangleSize height="-1" width="-1"/>
+      </shape>
+      <shape expanded="true" modelObjectName="Join_1" modelObjectNameSpace="CalculationView">
+        <upperLeftCorner x="120" y="170"/>
+        <rectangleSize height="-1" width="-1"/>
+      </shape>
+    </shapes>
+  </layout>
+</Calculation:scenario>
