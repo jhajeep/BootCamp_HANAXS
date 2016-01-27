@@ -1,4 +1,4 @@
-table.schemaName = "NEO_<XXXXXXXXXX>";
+table.schemaName = "SYSTEM";
 
 table.tableType = COLUMNSTORE;
 
