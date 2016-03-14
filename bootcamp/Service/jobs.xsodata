@@ -1,0 +1,5 @@
+service namespace "bootcamp.Service" 
+        { "SYSTEM"."bootcamp.DB::JobModel.Job" as "Jobs";
+          "SYSTEM"."bootcamp.DB::JobModel.Enrollment" as "Enrolments";
+          
+        }
