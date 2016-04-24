@@ -4,7 +4,7 @@ namespace bootcamp.DB;
 
 context JobModel{
     type Name: String(50);
-    type ID : String(10);
+    type ID : String(20);
     type SortDesc : String(100);
     
     type SystemFields {
