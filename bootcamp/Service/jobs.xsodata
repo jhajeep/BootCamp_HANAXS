@@ -1,5 +1,6 @@
 service namespace "bootcamp.Service" 
-        { "SYSTEM"."bootcamp.DB::JobModel.Job" as "Jobs";
-          "SYSTEM"."bootcamp.DB::JobModel.Enrollment" as "Enrolments";
+        { "SYSTEM"."bootcamp.DB::JobModel.Job" as "Jobs" navigates ("Job_Enrollments" as "HasEnrollments");
+          "SYSTEM"."bootcamp.DB::JobModel.Enrollment" as "Enrollments";
           
+          association "Job_Enrollments" with referential constraint principal "Jobs"("JOBID") multiplicity "1" dependent "Enrollments"("JOBID") multiplicity "*";
         }
